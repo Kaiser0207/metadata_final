@@ -32,11 +32,11 @@ df_clean = df.copy()
 
 # 濾掉 budget, revenue 為 0 的資料
 df_clean = df_clean[(df_clean['budget'] > 0) & (df_clean['revenue'] > 0)]
-# 濾掉 runtime 小於 30 分鐘的資料
-df_clean = df_clean[df_clean['runtime'] >= 30]
+# 濾掉 runtime 小於 45 分鐘的資料
+df_clean = df_clean[df_clean['runtime'] >= 45]
 # 濾掉 release_year 為 NaN 的資料
 df_clean = df_clean[df_clean['release_year'].notna()]
-df_clean = df_clean[df_clean['release_year'] >= 1950]
+df_clean = df_clean[df_clean['release_year'] >= 1990]
 df_clean = df_clean[df_clean['release_year'] <= 2023]
 
 # ==============================
