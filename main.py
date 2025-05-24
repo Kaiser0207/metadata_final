@@ -31,7 +31,7 @@ df['release_year'] = df['release_date'].dt.year
 # ==============================
 # 排除異常值
 # ==============================
-df_clean = df.copy()
+df_clean = df.copy() #
 
 # 濾掉 budget, revenue 為 0 的資料
 df_clean = df_clean[(df_clean['budget'] > 0) & (df_clean['revenue'] > 0)]
@@ -55,7 +55,6 @@ top10_revenue_movies = df_clean.sort_values(by='revenue', ascending=False).head(
 # 為每部電影分配一種顏色
 colors = sns.color_palette("tab10", n_colors=10)
 top10_revenue_movies['color'] = colors
-
 
 plt.figure(figsize=(16,6))  # 拉長寬度給右側標註用
 gs = gridspec.GridSpec(1, 2, width_ratios=[4, 1])  # 左邊圖大，右邊圖小
@@ -83,6 +82,8 @@ for i, (_, row) in enumerate(top10_revenue_movies.iterrows()):
     ax1.scatter(0, 10 - i, color=row['color'], s=100)  # 畫點
     ax1.text(0.01, 10 - i, f"{i+1}.{row['title']}", fontsize=10, va='center')  # 顯示文字
 
+#儲存照片
+plt.savefig('average_runtime_over_years.png')
 plt.tight_layout()
 plt.show()
 
@@ -115,6 +116,8 @@ axes[1].set_xlabel('Release Year', fontsize=14)
 axes[1].set_ylabel('Average Profit (USD)', fontsize=14)
 axes[1].grid(True, axis='y', alpha=0.3)
 
+#儲存照片
+plt.savefig('average_budget_revenue_profit_over_years.png')
 # 自動調整布局
 plt.tight_layout()
 plt.show()
@@ -174,5 +177,7 @@ axs[1].set_ylabel('Amount (Same Scale)')
 axs[1].set_title('Average Budget and Revenue by Genre (Top 10)')
 axs[1].legend()
 
+#儲存照片
+plt.savefig('genre_revenue_budget_analysis.png')
 plt.tight_layout()
 plt.show()
